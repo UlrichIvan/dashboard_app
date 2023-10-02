@@ -1,31 +1,13 @@
 import React from 'react'
+import SecondHearder from './SecondHearder';
 
 function Second() {
+  // let params = useParams()
+  // console.log(params)
   return (
     <>
       <div className="second">
-        <div className="second-header font-xs py-2 bg-white-smoke pr-2 text-capitalize d-flex w-100 justify-content-between align-items-center">
-          <div className="container-fluid p-0">
-            <div className="row">
-              <div className="col-12 col-sm-6 first-body-title py-2 font-sm font-weight-600">
-                all channel interaction summary report
-              </div>
-              <div className="col-12 col-sm-6">
-                <div className="buttons-actions d-flex justify-content-end">
-                  <span className="btn-sm p-2 btn-default bg-white mr-2 text-capitalize">
-                    <i className="fa fa-download"></i>
-                    <span className="btn-title">export</span>
-                    <i className="fa fa-chevron-down"></i>
-                  </span>
-                  <span className="btn-sm p-2 btn-primary text-capitalize">
-                    <i className="fa fa-paragraph"></i>
-                    search
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SecondHearder />
         <div className="second-body">
           <table className="table table-bordered table-sm">
             <caption className="bg-white">

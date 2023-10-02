@@ -73,36 +73,51 @@ body {
     box-shadow: unset;
     padding: 0;
   }
-  .dropdown-menu.show {
-    left: -1rem !important;
-  }
-  .dropdown-menu.show .form-group {
-    background-color: #80808024;
-    margin: 0 0.25rem;
-  }
-  .form-group.search > input.form-control {
-    border: 0;
-    box-shadow: unset;
-    background-color: #80808000;
-  }
-  .dropdown {
-    max-width: 100%;
-  }
+  .DropDownSearch {
+    .dropdown-menu.show {
+      left: -1rem !important;
+    }
+    .dropdown-menu.show .form-group {
+      background-color: #80808024;
+      margin: 0 0.25rem;
+    }
+    .form-group.search > input.form-control {
+      border: 0;
+      box-shadow: unset;
+      background-color: #80808000;
+    }
+    .dropdown {
+      max-width: 100%;
+    }
 
-  .dropdown .wrapper-items {
-    max-height: $max-height-dropdown;
-    overflow-y: auto;
-    overflow-x: hidden;
-    max-width: 100%;
+    .dropdown .wrapper-items {
+      max-height: $max-height-dropdown;
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+    .dropdown-menu.show .dropdown-item {
+      display: inline-block;
+      white-space: break-spaces;
+    }
+    .font-weight-500 {
+      font-weight: 500;
+    }
+    .dropdown-menu.show {
+      margin-top: 0.9rem;
+    }
   }
-  .dropdown-menu.show .dropdown-item {
-    display: inline-block;
-    white-space: break-spaces;
-  }
-  .font-weight-500 {
-    font-weight: 500;
-  }
-  .dropdown-menu.show {
-    margin-top: 0.9rem;
+  .DropDownExport {
+    font-family: $font-family;
+    .btn-sm.btn-default {
+      // padding: 0.3rem;
+      box-shadow: 0 0 2px;
+    }
+    .btn-sm.btn-primary {
+      padding: 0.3rem;
+    }
+    .dropdown-menu.show .dropdown-item {
+      background-color: $dropdown-export-item-bg;
+    }
   }
 }

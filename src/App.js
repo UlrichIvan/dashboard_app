@@ -3,19 +3,17 @@ import {
   Switch as Routes,
   Route,
 } from "react-router-dom";
-import Home from "./pages/home/Home";
 import NotFound from "./pages/notfound/NotFound";
+import Home from "./pages/home/Home";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" exact={true}>
-            <Home />
-          </Route>
-          <Route path="*" exact={true}>
-            <NotFound />
+          <Route exact={true} path="/" component={Home} />
+          <Route path="/:id" component={Home} />
+          <Route path="*" exact={true} component={NotFound}>
           </Route>
         </Routes>
       </Router>
