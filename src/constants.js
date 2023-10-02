@@ -16,14 +16,25 @@ export const selectOptions = [
 
 export const routesTarget = [
   {
-    route: "all-charnel-interaction-summary-report",
-    value: "all charnel interaction summary report"
+    route: "/all-charnel-interaction-summary-report",
+    value: "all charnel interaction summary report",
+    show: true
   },
-  { route: "chat-chanel-logs", value: "chat chanel logs" },
-  { route: "call-chanel-logs", value: "call chanel logs" },
-  { route: "facebook-chanel-logs", value: "facebook chanel logs" },
-  { route: "instagram-chanel-logs", value: "instagram chanel logs" },
-  { route: "twitter-chanel-logs", value: "twitter chanel logs" }
+  {
+    route: "/chat-chanel-logs", value: "chat chanel logs", show: true
+  },
+  {
+    route: "/call-chanel-logs", value: "call chanel logs", show: true
+  },
+  {
+    route: "/facebook-chanel-logs", value: "facebook chanel logs", show: true
+  },
+  {
+    route: "/instagram-chanel-logs", value: "instagram chanel logs", show: true
+  },
+  {
+    route: "/twitter-chanel-logs", value: "twitter chanel logs", show: true
+  }
 ];
 
 export const FileListItems = [
@@ -31,3 +42,11 @@ export const FileListItems = [
   "xlsx",
   "pdf"
 ];
+
+
+export const HOST = "http://localhost:4000"
+
+
+export const REDUX_ACTION = {
+  SET_URL: "SET_URL"
+}

@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import SecondHearder from './SecondHearder';
+import axios from 'axios';
+import { HOST } from '../../constants';
+import Head from '../table/Head';
+import { useSelector } from 'react-redux';
+import Tr from '../table/Tr';
+import { v4 } from 'uuid';
 
-function Second() {
-  // let params = useParams()
-  // console.log(params)
+function Second({ target = "all-charnel-interaction-summary-report" }) {
+
+  const url = useSelector(state => state.url)
+
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      try {
+        let { data } = await axios.get(`${HOST}${url}`)
+        console.log({ data })
+        setData(data)
+      } catch (error) {
+        console.log(error)
+      }
+    })()
+  }, [url]);
+
+
   return (
     <>
       <div className="second">
@@ -16,7 +38,7 @@ function Second() {
                   view 1-10 of 4074 rows
                 </div>
                 <div className="view-right d-flex align-items-center text-capitalize">
-                  <select className="bg-white border-0" name="rows" id="">
+                  <select className=" p-0 bg-white border-0 form-control" name="rows" id="">
                     <option value="1">10 rows</option>
                     <option value="1">15 rows</option>
                     <option value="1">20 rows</option>
@@ -40,114 +62,9 @@ function Second() {
                 </div>
               </div>
             </caption>
-            <thead>
-              <tr className="bg-white-smoke">
-                <th>
-                  <input type="checkbox" className="checkbox" name="" id="" />
-                </th>
-                <th>channel</th>
-                <th>facebook</th>
-                <th>instagram</th>
-                <th>linkedin</th>
-                <th>whatsapp</th>
-                <th>chat</th>
-                <th>call</th>
-                <th>total</th>
-              </tr>
-            </thead>
+            {data?.headers?.length > 0 && <Head headers={data?.headers} />}
             <tbody className="bg-white">
-              <tr>
-                <td>
-                  <input type="checkbox" className="checkbox" name="" id="" />
-                </td>
-                <td>lorem</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <input type="checkbox" className="checkbox" name="" id="" />
-                </td>
-                <td>lorem</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" className="checkbox" name="" id="" />
-                </td>
-                <td>lorem</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" className="checkbox" name="" id="" />
-                </td>
-                <td>lorem</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" className="checkbox" name="" id="" />
-                </td>
-                <td>lorem</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" className="checkbox" name="" id="" />
-                </td>
-                <td>lorem</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" className="checkbox" name="" id="" />
-                </td>
-                <td>lorem</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
+              {data?.rows?.length > 0 && data.rows.map(r => (<Tr key={v4()} tds={r} />))}
             </tbody>
           </table>
         </div>

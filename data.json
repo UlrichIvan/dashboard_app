@@ -1,0 +1,54 @@
+{
+  "all-charnel-interaction-summary-report": {
+    "headers": [
+      "channel",
+      "facebook",
+      "instagram",
+      "linkedin",
+      "whatsapp",
+      "chat",
+      "call"
+    ],
+    "rows": [
+      ["channel", 0, 0, 0, 0, 0, 0, 0],
+      ["channel", 0, 0, 0, 0, 0, 0, 0],
+      ["channel", 0, 0, 0, 0, 0, 0, 0],
+      ["channel", 0, 0, 0, 0, 0, 0, 0],
+      ["channel", 0, 0, 0, 0, 0, 0, 0]
+    ]
+  },
+  "chat-chanel-logs": {
+    "headers": [
+      "ID",
+      "date",
+      "customer",
+      "agent",
+      "campaign",
+      "queue",
+      "val.status",
+      "int.Status",
+      "work codes",
+      "duration",
+      "queue connect",
+      "agent connect",
+      "agent end",
+      "caller id"
+    ],
+    "rows": [
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ["test", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+  }
+}

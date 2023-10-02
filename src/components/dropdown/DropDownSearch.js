@@ -1,8 +1,44 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-function DropDownSearch({title="",items=[]}) {
+function DropDownSearch({ title = "", items = [] }) {
+    const [itemsList, setItemsList] = useState(items);
+    const [value, setValue] = useState("");
+
+    const url = useSelector(state => state.url)
+    const isActive = useCallback((value) => {
+        return value === url ? true : false
+    }, [url])
+
+    const handlerChange = useCallback((e) => {
+        let searchValue = e.target.value
+        let items = itemsList
+
+        items.forEach(item => {
+            item.show = item.value.indexOf(searchValue) !== -1 ? true : false
+        })
+
+        setItemsList([...items])
+
+    }, [itemsList])
+
+    const handlerClick = useCallback((e) => {
+
+        let items = itemsList
+
+        items.forEach(item => {
+            item.show = true
+        })
+
+        setItemsList([...items])
+        setValue("")
+    }, [itemsList])
+
+
     return (
+
         <div className="DropDownSearch">
             <Dropdown>
                 <Dropdown.Toggle variant="default" id="dropdown-basic">
@@ -17,19 +53,23 @@ function DropDownSearch({title="",items=[]}) {
                             <i className="fa fa-search"></i>
                         </span>
                         <input
+                            value={value}
                             type="text"
                             placeholder="search"
+                            onChange={(e) => setValue(e.target.value)}
+                            onInput={(e) => handlerChange(e)}
                             className="text-capitalize font-xs py-0 px-2 form-control"
                         />
                     </div>
                     <div className="wrapper-items">
-                        {items.map((item, i) => (<Dropdown.Item
-                            href={item.route}
-                            className="pl-2 font-xs font-weight-500"
+                        {itemsList.filter(item => (item.show)).map((item, i) => (<Link
+                            onClick={handlerClick}
+                            to={item.route}
+                            className={`pl-2 py-1 font-xs font-weight-500 dropdown-item ${isActive(item?.route) ? "isactive" : ""} `}
                             key={i}
                         >
                             {item.value}
-                        </Dropdown.Item>))}
+                        </Link>))}
                     </div>
                 </Dropdown.Menu>
             </Dropdown>

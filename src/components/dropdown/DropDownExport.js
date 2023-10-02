@@ -9,7 +9,7 @@ function DropDownExport(props) {
                     <span className="first-header-icon">
                         <i className="fa fa-repeat"></i>
                     </span>
-                    <span className="dropdown-title ml-2">{props.title}</span>
+                    <span className="dropdown-title mx-2">{props.title}</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="px-2">
                     {props?.items.map((item, i) => (<Dropdown.Item
