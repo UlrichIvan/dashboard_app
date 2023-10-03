@@ -48,5 +48,6 @@ export const HOST = "http://localhost:4000"
 
 
 export const REDUX_ACTION = {
-  SET_URL: "SET_URL"
+  SET_URL: "SET_URL",
+  OVERLAY_IS_OPEN: "OVERLAY_IS_OPEN"
 }

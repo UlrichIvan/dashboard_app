@@ -36,16 +36,14 @@ function DropDownSearch({ title = "", items = [] }) {
         setValue("")
     }, [itemsList])
 
-
     return (
-
         <div className="DropDownSearch">
             <Dropdown>
                 <Dropdown.Toggle variant="default" id="dropdown-basic">
                     <span className="first-header-icon">
                         <i className="fa fa-file-text"></i>
                     </span>
-                    <span className="dropdown-title ml-2">{title}</span>
+                    <span className="dropdown-title mx-2">{title}</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     <div className="form-group search font-xs px-2 d-flex justify-content-between align-items-center">

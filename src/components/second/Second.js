@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import Tr from '../table/Tr';
 import { v4 } from 'uuid';
 
-function Second({ target = "all-charnel-interaction-summary-report" }) {
+function Second() {
 
   const url = useSelector(state => state.url)
 
@@ -17,9 +17,10 @@ function Second({ target = "all-charnel-interaction-summary-report" }) {
     (async () => {
       try {
         let { data } = await axios.get(`${HOST}${url}`)
-        console.log({ data })
+        // console.log({ data })
         setData(data)
       } catch (error) {
+        setData([])
         console.log(error)
       }
     })()
@@ -31,13 +32,14 @@ function Second({ target = "all-charnel-interaction-summary-report" }) {
       <div className="second">
         <SecondHearder />
         <div className="second-body">
-          <table className="table table-bordered table-sm">
+          {data?.headers?.length > 0 && (<table className="table table-bordered table-sm">
             <caption className="bg-white">
               <div className="caption-wrapper pr-3 bg-white d-flex w-100 justify-content-between align-items-center">
                 <div className="view-left text-capitalize">
                   view 1-10 of 4074 rows
                 </div>
                 <div className="view-right d-flex align-items-center text-capitalize">
+
                   <select className=" p-0 bg-white border-0 form-control" name="rows" id="">
                     <option value="1">10 rows</option>
                     <option value="1">15 rows</option>
@@ -66,7 +68,7 @@ function Second({ target = "all-charnel-interaction-summary-report" }) {
             <tbody className="bg-white">
               {data?.rows?.length > 0 && data.rows.map(r => (<Tr key={v4()} tds={r} />))}
             </tbody>
-          </table>
+          </table>)}
         </div>
       </div>
     </>

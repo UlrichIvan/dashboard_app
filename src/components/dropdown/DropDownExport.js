@@ -1,5 +1,6 @@
 import React from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
+import { v4 } from 'uuid'
 
 function DropDownExport(props) {
     return (
@@ -12,10 +13,10 @@ function DropDownExport(props) {
                     <span className="dropdown-title mx-2">{props.title}</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="px-2">
-                    {props?.items.map((item, i) => (<Dropdown.Item
+                    {props?.items.map((item) => (<Dropdown.Item
                         href="#/action-1"
                         className="pl-2 mt-2 font-xs text-uppercase font-weight-500 text-center"
-                        key={i}
+                        key={v4()}
                     >
                         {item}
                     </Dropdown.Item>))}
