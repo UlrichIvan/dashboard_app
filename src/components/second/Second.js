@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import SecondHearder from './SecondHearder';
+import SecondHeader from './SecondHeader';
 import axios from 'axios';
 import { HOST } from '../../constants';
 import Head from '../table/Head';
@@ -30,7 +30,7 @@ function Second() {
   return (
     <>
       <div className="second">
-        <SecondHearder />
+        <SecondHeader />
         <div className="second-body">
           {data?.headers?.length > 0 && (<table className="table table-bordered table-sm">
             <caption className="bg-white">

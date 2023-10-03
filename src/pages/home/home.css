@@ -129,6 +129,9 @@ body {
 .home .Overlay {
   top: 0;
   left: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow: hidden;
   background-color: rgba(128, 128, 128, 0.6117647059);
   z-index: 1000;
   font-family: roboto;

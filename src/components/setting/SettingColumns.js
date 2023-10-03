@@ -10,8 +10,8 @@ function SettingColumns({ title = "", labels = [] }) {
         while (index < len) {
             inputs.push(
                 <RowSetting key={v4()}>
-                    <div className="col-6"><InputCheckBox label={lbs[index]} /></div>
-                    <div className="col-6"><InputCheckBox label={lbs[index + 1]} /></div>
+                    <div className="col-6"><InputCheckBox state={lbs[index]?.enabled} label={lbs[index]?.value} /></div>
+                    <div className="col-6"><InputCheckBox state={lbs[index + 1]?.enabled} label={lbs[index + 1]?.value} /></div>
                 </RowSetting>
             )
             index = index + 2
@@ -23,9 +23,7 @@ function SettingColumns({ title = "", labels = [] }) {
     const generateRows = useCallback((labels = []) => {
 
         let len = labels?.length;
-
-        console.log({ len })
-
+        
         if (len) {
             let inputs = []
 
@@ -35,12 +33,12 @@ function SettingColumns({ title = "", labels = [] }) {
                 if (len - 1) {
                     inputs = getRows(labels, len - 1)
                     inputs.push(<RowSetting key={v4()}>
-                        <div className="col-12"> <InputCheckBox label={labels[len - 1]} /></div>
+                        <div className="col-12"> <InputCheckBox state={labels[len - 1]?.enabled} label={labels[len - 1]?.value} /></div>
                     </RowSetting>)
                     return inputs
                 } else {
                     inputs.push(<RowSetting key={v4()}>
-                        <div className="col-12"> <InputCheckBox label={labels[0]} /></div>
+                        <div className="col-12"> <InputCheckBox state={labels[0]?.enabled} label={labels[0]?.value} /></div>
                     </RowSetting>)
                     return inputs
                 }

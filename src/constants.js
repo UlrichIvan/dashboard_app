@@ -49,5 +49,17 @@ export const HOST = "http://localhost:4000"
 
 export const REDUX_ACTION = {
   SET_URL: "SET_URL",
-  OVERLAY_IS_OPEN: "OVERLAY_IS_OPEN"
+  TOGGLE_OVERLAY: "TOGGLE_OVERLAY"
 }
+export const channels = [
+  { enabled: 1, value: "channel" },
+  { enabled: 1, value: "facebook" },
+  { enabled: 1, value: "instagram" },
+  { enabled: 1, value: "whatsapp" },
+  { enabled: 1, value: "linkedin" },
+  { enabled: 1, value: "twitter" },
+
+  { enabled: 1, value: "chat" },
+  { enabled: 1, value: "call" },
+  { enabled: 1, value: "total" },
+]

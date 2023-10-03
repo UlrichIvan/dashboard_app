@@ -138,6 +138,9 @@ body {
   .Overlay {
     top: 0;
     left: 0;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow: hidden;
     background-color: $overlay-background-color;
     z-index: $overlay-index;
     font-family: $font-family;

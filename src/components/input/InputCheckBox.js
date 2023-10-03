@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-function InputCheckBox({label=""}) {
-    const [value, setValue] = useState(0);
+function InputCheckBox({label="",state=1}) {
+    const [value, setValue] = useState(state);
     return (
         <>
             <div className="input-group d-flex justify-content-start align-items-center">
@@ -14,11 +14,10 @@ function InputCheckBox({label=""}) {
                 <span className="input-label-check ml-2">{label}</span>
             </div>
             <input
-                style={{ display: "none" }}
+            className="d-none"
                 onChange={(e) => setValue(e.target.value)}
                 type="checkbox"
-                checked={false}
-                value={value}
+                checked={value}
             />
         </>
     )
