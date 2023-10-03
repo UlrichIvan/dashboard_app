@@ -103,6 +103,7 @@ body {
     .dropdown-menu.show .dropdown-item {
       display: inline-block;
       white-space: break-spaces;
+      border-left: 2px solid white;
     }
     .dropdown-menu.show .dropdown-item.isactive {
       border-left: 2px solid lightblue;
@@ -128,6 +129,9 @@ body {
     }
   }
   .second {
+    .view-col {
+      padding-left: 0.4rem !important;
+    }
     caption {
       select {
         max-width: 80px;
@@ -143,7 +147,7 @@ body {
     overflow: hidden;
     background-color: $overlay-background-color;
     z-index: $overlay-index;
-    font-family: $font-family;
+    font-family: $overlay-font-family;
     .settings {
       right: 0;
       background-color: $global-setting-overlay-background;
@@ -161,8 +165,8 @@ body {
       border-radius: 3rem;
       cursor: pointer;
       .input-circle {
-        height: $height-input-check;
-        width: $height-input-check;
+        height: $width-indicator-check;
+        width: $width-indicator-check;
         border-radius: 50%;
         border: $boder-bottom-setting-general;
         transition: all 0.25s ease-in-out;
@@ -181,6 +185,12 @@ body {
       &.true {
         background-color: $check-true;
       }
+    }
+  }
+  .Pagination {
+    .previous,
+    .next {
+      cursor: pointer;
     }
   }
 }

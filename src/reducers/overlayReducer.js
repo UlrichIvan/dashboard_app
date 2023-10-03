@@ -1,8 +1,8 @@
-import { REDUX_ACTION } from "../constants"
+import { REDUX_ACTIONS } from "../constants"
 
 export const overlayReducer = (state = false, action) => {
     switch (action.type) {
-        case REDUX_ACTION.TOGGLE_OVERLAY:
+        case REDUX_ACTIONS.TOGGLE_OVERLAY:
             return action.payload
 
         default:

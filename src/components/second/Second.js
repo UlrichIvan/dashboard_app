@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import SecondHeader from './SecondHeader';
 import axios from 'axios';
-import { HOST } from '../../constants';
+import { HOST, rowsOptions } from '../../constants';
 import Head from '../table/Head';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Tr from '../table/Tr';
 import { v4 } from 'uuid';
+import SelectRows from '../table/SelectRows';
+import Pagination from '../table/Pagination';
+import setRows from '../../actions/setRows';
 
 function Second() {
 
   const url = useSelector(state => state.url)
+  const rows = useSelector(state => state.pagination)
+  const dispatch = useDispatch()
 
-  const [data, setData] = useState([])
+  console.log('rows')
+  // const [data, setData] = useState([])
 
   useEffect(() => {
     (async () => {
       try {
         let { data } = await axios.get(`${HOST}${url}`)
-        // console.log({ data })
-        setData(data)
+        dispatch(setRows(data?.rows))
+        console.log({ data })
+        // setData(data)
       } catch (error) {
-        setData([])
+        // dispatch(SelectRows([]))
         console.log(error)
       }
     })()
-  }, [url]);
+  }, [url, dispatch]);
 
 
   return (
@@ -32,43 +39,35 @@ function Second() {
       <div className="second">
         <SecondHeader />
         <div className="second-body">
-          {data?.headers?.length > 0 && (<table className="table table-bordered table-sm">
+          <table className="table table-bordered table-sm">
             <caption className="bg-white">
-              <div className="caption-wrapper pr-3 bg-white d-flex w-100 justify-content-between align-items-center">
-                <div className="view-left text-capitalize">
-                  view 1-10 of 4074 rows
-                </div>
-                <div className="view-right d-flex align-items-center text-capitalize">
-
-                  <select className=" p-0 bg-white border-0 form-control" name="rows" id="">
-                    <option value="1">10 rows</option>
-                    <option value="1">15 rows</option>
-                    <option value="1">20 rows</option>
-                    <option value="1">30 rows</option>
-                  </select>
-                  <div className="page-indicator ml-3">
-                    <span className="previous">
-                      <i className="fa fa-chevron-left"></i>
-                    </span>
-                    <span className="previous">
-                      <i className="fa fa-chevron-left"></i>
-                    </span>
-                    <span className="pages mx-3"> page 1 of 408 </span>
-                    <span className="next">
-                      <i className="fa fa-chevron-right"></i>
-                    </span>
-                    <span className="next">
-                      <i className="fa fa-chevron-right"></i>
-                    </span>
+              <div className="caption-wrapper container-fluid pr-3 bg-white">
+                <div className="row">
+                  <div className="col-12 col-sm-6 view-col">
+                    <div className="view-infos d-flex align-items-center text-capitalize">
+                      <div className="views">view 1-10 of 4074 rows</div>
+                    </div>
+                  </div>
+                  <div className="col-12 col-sm-6">
+                    <div className="view-right d-flex align-items-center justify-content-end  text-capitalize">
+                      <SelectRows
+                        options={rowsOptions}
+                        value="10 rows"
+                        className="p-0 bg-white border-0"
+                      />
+                      <Pagination />
+                    </div>
                   </div>
                 </div>
               </div>
             </caption>
+          </table>
+          {/* {data?.headers?.length > 0 && (<table className="table table-bordered table-sm">
             {data?.headers?.length > 0 && <Head headers={data?.headers} />}
             <tbody className="bg-white">
-              {data?.rows?.length > 0 && data.rows.map(r => (<Tr key={v4()} tds={r} />))}
+              {rows?.length > 0 && rows.map(r => (<Tr key={v4()} tds={r} />))}
             </tbody>
-          </table>)}
+          </table>)} */}
         </div>
       </div>
     </>

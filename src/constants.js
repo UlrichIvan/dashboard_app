@@ -1,8 +1,16 @@
 export const selectOptions = [
-  { route: "chocolate", label: "Chocolate" },
-  { route: "strawberry", label: "Strawberry" },
-  { route: "vanilla", label: "Vanilla" },
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
 ];
+
+export const rowsOptions = [
+  { value: "10 rows", label: "10 rows" },
+  { value: "15 rows", label: "15 rows" },
+  { value: "20 rows", label: "20 rows" },
+  { value: "30 rows", label: "30 rows" },
+];
+
 
 // export const itemsDropDownSearch = [
 //   "all charnel interaction summary report",
@@ -47,9 +55,13 @@ export const FileListItems = [
 export const HOST = "http://localhost:4000"
 
 
-export const REDUX_ACTION = {
+export const REDUX_ACTIONS = {
   SET_URL: "SET_URL",
-  TOGGLE_OVERLAY: "TOGGLE_OVERLAY"
+  TOGGLE_OVERLAY: "TOGGLE_OVERLAY",
+  SET_ROWS_PAGE: "SET_ROWS_PAGE",
+  SET_ROWS_PERIOD: "SET_ROWS_PERIOD",
+  SET_ROWS_PAGES: "SET_ROWS_PAGES",
+  SET_ROWS: "SET_ROWS"
 }
 export const channels = [
   { enabled: 1, value: "channel" },

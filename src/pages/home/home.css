@@ -100,6 +100,7 @@ body {
 .home .DropDownSearch .dropdown-menu.show .dropdown-item {
   display: inline-block;
   white-space: break-spaces;
+  border-left: 2px solid white;
 }
 .home .DropDownSearch .dropdown-menu.show .dropdown-item.isactive {
   border-left: 2px solid lightblue;
@@ -122,6 +123,9 @@ body {
 .home .DropDownExport .dropdown-menu.show .dropdown-item {
   background-color: rgba(128, 128, 128, 0.1529411765);
 }
+.home .second .view-col {
+  padding-left: 0.4rem !important;
+}
 .home .second caption select {
   max-width: 80px;
   width: 80px;
@@ -134,7 +138,7 @@ body {
   overflow: hidden;
   background-color: rgba(128, 128, 128, 0.6117647059);
   z-index: 1000;
-  font-family: roboto;
+  font-family: sans-serif;
 }
 .home .Overlay .settings {
   right: 0;
@@ -153,8 +157,8 @@ body {
   cursor: pointer;
 }
 .home .Overlay .input-check .input-circle {
-  height: 15px;
-  width: 15px;
+  height: 14px;
+  width: 14px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1607843137);
   transition: all 0.25s ease-in-out;
@@ -170,4 +174,8 @@ body {
 }
 .home .Overlay .input-check.true {
   background-color: lightgreen;
+}
+.home .Pagination .previous,
+.home .Pagination .next {
+  cursor: pointer;
 }/*# sourceMappingURL=home.css.map */
