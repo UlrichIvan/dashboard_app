@@ -14,6 +14,9 @@ function Second() {
 
   const dispatch = useDispatch()
 
+  const { rows } = useSelector(state => state.pagination)
+
+
   useEffect(() => {
     (async () => {
       try {
@@ -36,12 +39,12 @@ function Second() {
       <div className="second">
         <SecondHeader />
         <div className="second-body">
-          <div class="panel-body bg-white table-responsive">
+          {rows?.length ? <div className="panel-body bg-white table-responsive">
             <table className="table table-bordered table-sm">
               <Head />
               <Tbody />
             </table>
-          </div>
+          </div> : null}
           <CaptionTable />
         </div>
       </div>
