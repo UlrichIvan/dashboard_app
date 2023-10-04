@@ -14,4 +14,4 @@ function Tr({ tds = [] }) {
     )
 }
 
-export default Tr
+export default Tr 

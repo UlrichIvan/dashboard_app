@@ -1,5 +1,14 @@
 body {
   background-color: rgba(128, 128, 128, 0.123);
+  overflow-y: auto;
+  max-height: 100vh;
+  position: absolute;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  overflow: hidden;
 }
 
 .home {
@@ -126,11 +135,29 @@ body {
 .home .second .view-col {
   padding-left: 0.4rem !important;
 }
-.home .second caption select {
+.home .second .caption {
+  font-family: roboto;
+}
+.home .second .caption select {
   max-width: 80px;
   width: 80px;
 }
-.home .Overlay {
+.home .Pagination .previous,
+.home .Pagination .next {
+  cursor: pointer;
+}
+.home .second-body .table-responsive {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+.home .second-body .table-responsive thead {
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  top: 0px;
+}
+
+.Overlay {
   top: 0;
   left: 0;
   max-height: 100%;
@@ -140,42 +167,38 @@ body {
   z-index: 1000;
   font-family: sans-serif;
 }
-.home .Overlay .settings {
+.Overlay .settings {
   right: 0;
   background-color: mintcream;
 }
-.home .Overlay .close {
+.Overlay .close {
   height: 32px;
   width: 32px;
   border-radius: 50%;
   border: 1px solid rgba(128, 128, 128, 0.98);
 }
-.home .Overlay .input-check {
+.Overlay .input-check {
   height: 15px;
   width: 40px;
   border-radius: 3rem;
   cursor: pointer;
 }
-.home .Overlay .input-check .input-circle {
+.Overlay .input-check .input-circle {
   height: 14px;
   width: 14px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1607843137);
   transition: all 0.25s ease-in-out;
 }
-.home .Overlay .input-check .input-circle.true {
+.Overlay .input-check .input-circle.true {
   left: calc(100% - 15px);
 }
-.home .Overlay .input-check .input-circle.false {
+.Overlay .input-check .input-circle.false {
   left: 0px;
 }
-.home .Overlay .input-check.false {
+.Overlay .input-check.false {
   background-color: rgba(128, 128, 128, 0.248);
 }
-.home .Overlay .input-check.true {
+.Overlay .input-check.true {
   background-color: lightgreen;
-}
-.home .Pagination .previous,
-.home .Pagination .next {
-  cursor: pointer;
 }/*# sourceMappingURL=home.css.map */

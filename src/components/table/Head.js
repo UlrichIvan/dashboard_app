@@ -1,17 +1,19 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { v4 } from 'uuid'
 
-function Head({ headers = [] }) {
+function Head() {
+    const { headers } = useSelector(state => state.pagination)
     return (
         <>
-            <thead>
+            {headers?.length > 0 ? (<thead className="position-sticky">
                 <tr className="bg-white-smoke">
                     <th>
                         <input type="checkbox" className="checkbox" name="" id="" />
                     </th>
-                    {headers?.length > 0 && (headers?.map(header => (<th key={v4()}>{header}</th>)) || null)}
+                    {(headers?.map(header => (<th key={v4()}>{header}</th>)) || null)}
                 </tr>
-            </thead>
+            </thead>) : null}
         </>
     )
 }

@@ -1,6 +1,14 @@
 @import "../global.scss";
 body {
   background-color: $bg-color;
+  overflow-y: auto;
+  max-height: 100vh;
+  position: absolute;
+  width: 100%;
+  overflow-x: hidden;
+}
+html {
+  overflow: hidden;
 }
 .home {
   font-family: $font-family;
@@ -132,65 +140,76 @@ body {
     .view-col {
       padding-left: 0.4rem !important;
     }
-    caption {
+    .caption {
+      font-family: $font-family;
       select {
         max-width: 80px;
         width: 80px;
       }
     }
   }
-  .Overlay {
-    top: 0;
-    left: 0;
-    max-height: 100%;
-    overflow-y: auto;
-    overflow: hidden;
-    background-color: $overlay-background-color;
-    z-index: $overlay-index;
-    font-family: $overlay-font-family;
-    .settings {
-      right: 0;
-      background-color: $global-setting-overlay-background;
-    }
-    .close {
-      height: $width-close;
-      width: $width-close;
-      border-radius: 50%;
-      border: $border-close-button;
-    }
 
-    .input-check {
-      height: $height-input-check;
-      width: $width-input-check;
-      border-radius: 3rem;
-      cursor: pointer;
-      .input-circle {
-        height: $width-indicator-check;
-        width: $width-indicator-check;
-        border-radius: 50%;
-        border: $boder-bottom-setting-general;
-        transition: all 0.25s ease-in-out;
-
-        &.true {
-          left: Calc(100% - $height-input-check);
-        }
-
-        &.false {
-          left: 0px;
-        }
-      }
-      &.false {
-        background-color: $check-false;
-      }
-      &.true {
-        background-color: $check-true;
-      }
-    }
-  }
   .Pagination {
     .previous,
     .next {
       cursor: pointer;
+    }
+  }
+  .second-body .table-responsive {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+    thead {
+      backdrop-filter: blur(5px);
+      top: 0px;
+    }
+  }
+}
+.Overlay {
+  top: 0;
+  left: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow: hidden;
+  background-color: $overlay-background-color;
+  z-index: $overlay-index;
+  font-family: $overlay-font-family;
+  .settings {
+    right: 0;
+    background-color: $global-setting-overlay-background;
+  }
+  .close {
+    height: $width-close;
+    width: $width-close;
+    border-radius: 50%;
+    border: $border-close-button;
+  }
+
+  .input-check {
+    height: $height-input-check;
+    width: $width-input-check;
+    border-radius: 3rem;
+    cursor: pointer;
+    .input-circle {
+      height: $width-indicator-check;
+      width: $width-indicator-check;
+      border-radius: 50%;
+      border: $boder-bottom-setting-general;
+      transition: all 0.25s ease-in-out;
+
+      &.true {
+        left: Calc(100% - $height-input-check);
+      }
+
+      &.false {
+        left: 0px;
+      }
+    }
+    &.false {
+      background-color: $check-false;
+    }
+    &.true {
+      background-color: $check-true;
     }
   }
 }

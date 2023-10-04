@@ -2,12 +2,12 @@ import React from 'react'
 import SettingColumns from '../setting/SettingColumns'
 import { channels } from '../../constants'
 import { useDispatch, useSelector } from 'react-redux'
-import toggleOverlay from '../../actions/toggleOverlay'
+import { toggleOverlay } from '../../actions/paginationActions'
 function Overlay() {
     const open = useSelector(state => state.toggle)
     const dispatch = useDispatch()
     return (
-        <div className={`Overlay position-absolute h-100 w-100 p-0 m-0 ${!open ? "d-none" : ""}`}>
+        <div className={`Overlay position-fixed h-100 w-100 p-0 m-0 ${!open ? "d-none" : ""}`}>
             <div className="settings position-absolute h-100 w-30">
                 {/* header settings */}
                 <div className="container-fluid p-0 bg-white">

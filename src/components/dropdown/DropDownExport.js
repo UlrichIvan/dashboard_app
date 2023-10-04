@@ -14,7 +14,7 @@ function DropDownExport(props) {
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="px-2">
                     {props?.items.map((item) => (<Dropdown.Item
-                        href="#/action-1"
+                        href="#"
                         className="pl-2 mt-2 font-xs text-uppercase font-weight-500 text-center"
                         key={v4()}
                     >

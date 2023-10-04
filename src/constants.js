@@ -5,10 +5,12 @@ export const selectOptions = [
 ];
 
 export const rowsOptions = [
-  { value: "10 rows", label: "10 rows" },
-  { value: "15 rows", label: "15 rows" },
-  { value: "20 rows", label: "20 rows" },
-  { value: "30 rows", label: "30 rows" },
+  { value: "10", label: "10 rows" },
+  { value: "15", label: "15 rows" },
+  { value: "20", label: "20 rows" },
+  { value: "30", label: "30 rows" },
+  { value: "40", label: "40 rows" },
+
 ];
 
 
@@ -58,10 +60,14 @@ export const HOST = "http://localhost:4000"
 export const REDUX_ACTIONS = {
   SET_URL: "SET_URL",
   TOGGLE_OVERLAY: "TOGGLE_OVERLAY",
-  SET_ROWS_PAGE: "SET_ROWS_PAGE",
-  SET_ROWS_PERIOD: "SET_ROWS_PERIOD",
-  SET_ROWS_PAGES: "SET_ROWS_PAGES",
-  SET_ROWS: "SET_ROWS"
+  SET_PAGE: "SET_PAGE",
+  SET_PERIOD: "SET_PERIOD",
+  SET_PAGES: "SET_PAGES",
+  SET_ROWS: "SET_ROWS",
+  SET_HEADERS: "SET_HEADERS",
+  SET_VIEWS: "SET_VIEWS",
+  SET_ROWS_PEER_PAGES: "SET_ROWS_PEER_PAGES",
+  INIT_ROWS_PEER_PAGES: "INIT_ROWS_PEER_PAGES"
 }
 export const channels = [
   { enabled: 1, value: "channel" },
