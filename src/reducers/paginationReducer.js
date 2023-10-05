@@ -2,6 +2,7 @@ import { REDUX_ACTIONS } from "../constants"
 
 const initState = {
     rows: [],
+    selected: [],
     period: 10,
     pages: 1,
     page: 1,
@@ -72,8 +73,13 @@ export const paginationReducer = (state = initState, action) => {
 
         case REDUX_ACTIONS.SET_PAGE_TO_ROWS_PERIOD:
             let { period: p, ob } = action.payload
-            console.log({ob})
             return { ...state, rows: { ...state.rows, [p]: { ...ob } } }
+
+        case REDUX_ACTIONS.SET_SELECTED:
+            let { selected } = state
+            let newSelected = [...selected, action.payload]
+            console.log({ selected, newSelected })
+            return { ...state, selected: [...newSelected] }
 
         default:
             return state

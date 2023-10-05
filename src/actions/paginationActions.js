@@ -129,7 +129,15 @@ export const setPageByPeriod = (rows, page, period) => {
 
     return {
         type: REDUX_ACTIONS.SET_PAGE_TO_ROWS_PERIOD,
-        payload: {ob,period}
+        payload: { ob, period }
+    }
+}
+
+export const setSelected = (row) => {
+
+    return {
+        type: REDUX_ACTIONS.SET_SELECTED,
+        payload: row
     }
 }
 
@@ -142,4 +150,16 @@ export const getViewByPeriodAndPage = (rows, period) => {
     }))
 
     return row ? row["views"] : null
+}
+
+export const getRowByPeriodAndPage = (rows, period, index) => {
+
+    let { rowsPages, page } = rows[period]
+
+
+    let row = rowsPages?.find((data => {
+        return data?.hasOwnProperty(page)
+    }))
+
+    return row ? row[page][index] : null
 }
