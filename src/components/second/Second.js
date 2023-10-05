@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import SecondHeader from './SecondHeader';
 import axios from 'axios';
-import { HOST } from '../../constants';
+import { DEFAULT_PERIOD, HOST } from '../../constants';
 import Head from '../table/Head';
 import { useDispatch, useSelector } from 'react-redux';
 import CaptionTable from '../table/CaptionTable';
@@ -14,17 +14,26 @@ function Second() {
 
   const dispatch = useDispatch()
 
-  const { rows } = useSelector(state => state.pagination)
+  const { rows, period } = useSelector(state => state.pagination)
 
+  useEffect(() => {
+
+    if (rows?.hasOwnProperty(period)) {
+
+      let rowsValue = rows[period]
+
+      dispatch(setPages(rowsValue?.pages || 1))
+    }
+
+  }, [rows, dispatch, period]);
 
   useEffect(() => {
     (async () => {
       try {
         let { data } = await axios.get(`${HOST}${url}`)
-        dispatch(setRowsPeerPages({ rowsPage: data?.rows?.slice(0, 10) || [] }))
+        dispatch(setRowsPeerPages({ rowsPage: data?.rows?.slice(0, DEFAULT_PERIOD) || [] }))
         dispatch(setRows(data?.rows || []))
         dispatch(setHeaders(data?.headers || []))
-        dispatch(setPages({ period: 10 }))
       } catch (error) {
         dispatch(setRows([]))
         dispatch(setHeaders([]))
@@ -37,9 +46,9 @@ function Second() {
   return (
     <>
       <div className="second">
-        <SecondHeader />
         <div className="second-body">
-          {rows?.length ? <div className="panel-body bg-white table-responsive">
+          <SecondHeader />
+          {Object.keys(rows)?.length ? <div className="panel-body bg-white table-responsive">
             <table className="table table-bordered table-sm">
               <Head />
               <Tbody />

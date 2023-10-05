@@ -33,6 +33,7 @@ html {
   .font-weight-600 {
     font-weight: 600;
   }
+
   select.form-control:not([size]):not([multiple]) {
     height: 32px;
     padding: 6px 12px;
@@ -164,6 +165,9 @@ html {
       top: 0px;
     }
   }
+  .check-columns.font-xs {
+    font-size: 0.9rem;
+  }
 }
 .Overlay {
   top: 0;
@@ -174,9 +178,17 @@ html {
   background-color: $overlay-background-color;
   z-index: $overlay-index;
   font-family: $overlay-font-family;
+
+  .general-wrapper {
+    box-shadow: 0 0 2px #00000080;
+  }
+  .ig {
+    font-size: 0.8rem;
+  }
   .settings {
     right: 0;
     background-color: $global-setting-overlay-background;
+    width: 30%;
   }
   .close {
     height: $width-close;
@@ -191,10 +203,10 @@ html {
     border-radius: 3rem;
     cursor: pointer;
     .input-circle {
-      height: $width-indicator-check;
-      width: $width-indicator-check;
+      height: 13.5px;
+      width: 13.5px;
       border-radius: 50%;
-      border: $boder-bottom-setting-general;
+      border: 1px solid rgba(0, 0, 0, 0.1607843137);
       transition: all 0.25s ease-in-out;
 
       &.true {

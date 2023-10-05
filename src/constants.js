@@ -13,16 +13,10 @@ export const rowsOptions = [
 
 ];
 
+export const DEFAULT_PERIOD = 10
 
-// export const itemsDropDownSearch = [
-//   "all charnel interaction summary report",
-//   "chat chanel logs",
-//   "call chanel logs",
-//   "facebook chanel logs",
-//   "instagram chanel logs",
-//   "Something else",
-//   "twitter chanel logs"
-// ];
+export const DEFAULT_VIEW = { a: 1, b: 10, a_init: 1, index: 1 }
+
 
 export const routesTarget = [
   {
@@ -67,7 +61,8 @@ export const REDUX_ACTIONS = {
   SET_HEADERS: "SET_HEADERS",
   SET_VIEWS: "SET_VIEWS",
   SET_ROWS_PEER_PAGES: "SET_ROWS_PEER_PAGES",
-  INIT_ROWS_PEER_PAGES: "INIT_ROWS_PEER_PAGES"
+  INIT_ROWS_PEER_PAGES: "INIT_ROWS_PEER_PAGES",
+  SET_PAGE_TO_ROWS_PERIOD: "SET_PAGE_TO_ROWS_PERIOD"
 }
 export const channels = [
   { enabled: 1, value: "channel" },

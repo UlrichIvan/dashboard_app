@@ -1,33 +1,49 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getRowsPeerPages } from '../../reducers/paginationReducer'
-import { setPage, setRowsPeerPages, setViews } from '../../actions/paginationActions'
+import { setPage, setPageByPeriod } from '../../actions/paginationActions'
 
 function Pagination() {
 
-    const { rows, page, pages, views, period } = useSelector(state => state.pagination)
+    const { rows, page, pages, period } = useSelector(state => state.pagination)
+
+    const [pageIndicator, setPageIndicator] = useState({
+        page: 1,
+        pages: 1
+    });
 
     const dispatch = useDispatch()
 
+    useEffect(() => {
+
+        if (rows.hasOwnProperty(period)) {
+
+            let rowsValue = rows[period]
+
+            setPageIndicator({
+                page: rowsValue?.page,
+                pages: rowsValue?.pages
+            })
+
+        }
+
+    }, [rows, period, page]);
+
     const update = useCallback((page) => {
 
-        let rowsfiltered = getRowsPeerPages(rows, views, page, period)
+        dispatch(setPageByPeriod(rows, page, period))
 
         dispatch(setPage({ page }))
 
-        dispatch(setViews({ page, period }))
+    }, [dispatch, period, rows])
 
-        dispatch(setRowsPeerPages({ rowsPage: rowsfiltered }))
-
-    }, [views, rows, dispatch, period])
-
-    const nextClickHandler = useCallback((e) => {
+    const nextClickHandler = useCallback(() => {
         if ((page + 1) <= pages) {
+            console.log({ page: page + 1, pages })
             update(page + 1)
         }
     }, [update, page, pages])
 
-    const previousClickHandler = useCallback((e) => {
+    const previousClickHandler = useCallback(() => {
         if ((page - 1) >= 1) {
             update(page - 1)
         }
@@ -36,11 +52,13 @@ function Pagination() {
 
     return (
         <>
-            {rows?.length ? <div className="Pagination page-indicator ml-3">
+            {Object.keys(rows)?.length ? <div className="Pagination page-indicator ml-3">
                 <span className="previous" onClick={previousClickHandler}>
                     <i className="fa fa-chevron-left"></i>
                 </span>
-                <span className="pages mx-2"> {`page ${page} of ${pages}`} </span>
+                {pageIndicator?.page && pageIndicator?.pages ? <span className="pages mx-2">
+                    {`page ${pageIndicator?.page} of ${pageIndicator?.pages}`}
+                </span> : null}
                 <span className="next" onClick={nextClickHandler}>
                     <i className="fa fa-chevron-right"></i>
                 </span>

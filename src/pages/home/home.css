@@ -12,7 +12,7 @@ html {
 }
 
 .home {
-  font-family: roboto;
+  font-family: sans-serif;
 }
 .home .gap-in-left {
   padding-left: 1rem;
@@ -121,7 +121,7 @@ html {
   margin-top: 0.9rem;
 }
 .home .DropDownExport {
-  font-family: roboto;
+  font-family: sans-serif;
 }
 .home .DropDownExport .btn-sm.btn-default {
   box-shadow: 0 0 2px;
@@ -136,7 +136,7 @@ html {
   padding-left: 0.4rem !important;
 }
 .home .second .caption {
-  font-family: roboto;
+  font-family: sans-serif;
 }
 .home .second .caption select {
   max-width: 80px;
@@ -156,6 +156,9 @@ html {
           backdrop-filter: blur(5px);
   top: 0px;
 }
+.home .check-columns.font-xs {
+  font-size: 0.9rem;
+}
 
 .Overlay {
   top: 0;
@@ -167,9 +170,16 @@ html {
   z-index: 1000;
   font-family: sans-serif;
 }
+.Overlay .general-wrapper {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5019607843);
+}
+.Overlay .ig {
+  font-size: 0.8rem;
+}
 .Overlay .settings {
   right: 0;
   background-color: mintcream;
+  width: 30%;
 }
 .Overlay .close {
   height: 32px;
@@ -179,13 +189,13 @@ html {
 }
 .Overlay .input-check {
   height: 15px;
-  width: 40px;
+  width: 27px;
   border-radius: 3rem;
   cursor: pointer;
 }
 .Overlay .input-check .input-circle {
-  height: 14px;
-  width: 14px;
+  height: 13.5px;
+  width: 13.5px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1607843137);
   transition: all 0.25s ease-in-out;

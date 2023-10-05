@@ -1,16 +1,30 @@
-import React, { } from 'react'
+import React, {
+    useState, useEffect
+} from 'react'
 import { useSelector } from 'react-redux'
 import { v4 } from 'uuid'
 import Tr from '../table/Tr';
+import { getRows } from '../../actions/paginationActions';
 
 function Tbody() {
 
-    const { rows, headers, rowsPage } = useSelector(state => state.pagination)
+    const { rows, headers, period } = useSelector(state => state.pagination)
+
+    const [allRows, setAllRows] = useState([]);
+
+    useEffect(() => {
+        if (rows.hasOwnProperty(period)) {
+
+            let rowsValue = getRows(rows, period)
+
+            setAllRows(rowsValue)
+        }
+    }, [period, rows, allRows]);
 
     return (
         <>
-            {rows?.length && headers?.length ? <tbody className="bg-white">
-                {rowsPage?.map(r => (<Tr key={v4()} tds={r} />))}
+            {allRows?.length && headers?.length ? <tbody className="bg-white">
+                {allRows?.map(r => (<Tr key={v4()} tds={r?.row} />))}
             </tbody> : null}
         </>
     )

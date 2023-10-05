@@ -23,7 +23,7 @@ function SettingColumns({ title = "", labels = [] }) {
     const generateRows = useCallback((labels = []) => {
 
         let len = labels?.length;
-        
+
         if (len) {
             let inputs = []
 
@@ -51,7 +51,7 @@ function SettingColumns({ title = "", labels = [] }) {
         <>
             <div className="general-wrapper mt-3 bg-white mx-3">
                 <div className="general font-weight-bold text-capitalize p-2">{title}</div>
-                <div className="check font-weight-bold text-capitalize p-2 ">
+                <div className="check font-xs text-capitalize p-2 ">
                     {generateRows(labels)}
                 </div>
             </div>

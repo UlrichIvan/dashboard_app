@@ -2,37 +2,50 @@ import { REDUX_ACTIONS } from "../constants"
 
 const initState = {
     rows: [],
-    rowsPage: [],
     period: 10,
     pages: 1,
     page: 1,
     headers: [],
-    views: { a: 1, b: 10, a_init: 1, index: 1 }
+    // views: { a: 1, b: 10, a_init: 1, index: 1 }
 }
-export const getIndexes = (views, page, period) => {
+export const getIndexes = (len, views, page, period) => {
     return {
-        ...views,
         a: views?.a_init + (page - 1) * period,
         b: (views?.a_init - 1) + (page) * period,
-        index: page
+        index: page,
+        len
     }
 }
 
 export const getRowsPeerPages = (rows, views, page, period) => {
-    let { a, b } = getIndexes(views, page, period)
+
+    let { a, b } = getIndexes(rows, views, page, period)
 
     let rowsfiltered = rows.slice(a - 1, b)
 
     return rowsfiltered
 }
+
+export const getPages = (rows, period) => {
+    let rowsCount = rows?.length
+
+    let pre_pages = Math.trunc(rowsCount / period)
+
+    let pages = rowsCount % period ? (pre_pages + 1) : pre_pages
+
+    return pages
+}
+
+
 export const paginationReducer = (state = initState, action) => {
     switch (action.type) {
         case REDUX_ACTIONS.SET_ROWS:
-            return { ...state, rows: action.payload }
+            return { ...state, rows: { ...action.payload } }
 
         case REDUX_ACTIONS.SET_ROWS_PEER_PAGES:
+
             let { rowsPage } = action.payload
-            console.log({ rowsPage })
+
             return { ...state, rowsPage: [...rowsPage] }
 
         case REDUX_ACTIONS.SET_HEADERS:
@@ -49,26 +62,18 @@ export const paginationReducer = (state = initState, action) => {
 
         case REDUX_ACTIONS.SET_PAGES:
 
-            let { rows } = state
-
-            let rowsCount = rows?.length
-
-            let { period: p } = action.payload
-
-            let pre_pages = Math.trunc(rowsCount / p)
-
-            let pos_pages = rowsCount % p
-
-
-            console.log({ pre_pages, pos_pages })
-
-            return { ...state, pages: pos_pages ? (pre_pages + 1) : pre_pages }
+            return { ...state, pages: action.payload }
 
         case REDUX_ACTIONS.SET_PERIOD:
             return { ...state, period: action.payload?.period }
 
         case REDUX_ACTIONS.SET_PAGE:
             return { ...state, page: action.payload?.page }
+
+        case REDUX_ACTIONS.SET_PAGE_TO_ROWS_PERIOD:
+            let { period: p, ob } = action.payload
+            console.log({ob})
+            return { ...state, rows: { ...state.rows, [p]: { ...ob } } }
 
         default:
             return state

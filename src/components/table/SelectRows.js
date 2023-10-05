@@ -1,39 +1,32 @@
 import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
-import { setPage, setPages, setPeriod, setRowsPeerPages, setViews } from '../../actions/paginationActions';
-import { getRowsPeerPages } from '../../reducers/paginationReducer';
+import { setPage, setPageByPeriod, setPeriod } from '../../actions/paginationActions';
 
 function SelectRows(props) {
+
     const [value, setValue] = useState(props?.value);
 
-    const { rows, views } = useSelector(state => state.pagination)
-
     const dispatch = useDispatch()
+
+    const { rows } = useSelector(state => state.pagination)
+
 
     const handlerChange = useCallback((e) => {
 
         let period = e.target.value
 
-        let rowsfiltered = getRowsPeerPages(rows, views, 1, period)
-
-        console.log({ period, rowsfiltered })
-
-        dispatch(setRowsPeerPages({ rowsPage: rowsfiltered }))
-
         setValue(period)
-
-        dispatch(setViews({ period: parseInt(period, 10), page: 1 }))
-
-        dispatch(setPages({ period: parseInt(period, 10) }))
-
-        dispatch(setPage({ page: 1 }))
 
         dispatch(setPeriod({ period: parseInt(period, 10) }))
 
+        dispatch(setPage({ page: 1 }))
+
+        dispatch(setPageByPeriod(rows, 1, period))
 
 
-    }, [dispatch, rows, views])
+
+    }, [dispatch, rows])
 
     return (
         <>

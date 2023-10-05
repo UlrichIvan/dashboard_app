@@ -11,8 +11,8 @@ function SecondHeader() {
 
     return (
         <>
-            {rows?.length && headers?.length ? (
-                <div className="SecondHeader font-xs py-2 bg-white-smoke pr-2 text-capitalize d-flex w-100 justify-content-between align-items-center">
+            {Object.keys(rows)?.length && headers?.length ? (
+                <div className="SecondHeader font-xs py-2 bg-white-smoke px-2 text-capitalize d-flex w-100 justify-content-between align-items-center">
                     <div className="container-fluid p-0">
                         <div className="row">
                             <div className="col-12 col-sm-6 first-body-title py-2 font-sm font-weight-600">

@@ -1,22 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SelectRows from './SelectRows'
 import { rowsOptions } from '../../constants'
 import Pagination from './Pagination'
 import { useSelector } from 'react-redux'
+import { getViewByPeriodAndPage } from '../../actions/paginationActions'
 
 function CaptionTable() {
 
-    const { rows, headers,views } = useSelector(state => state.pagination)
-    
+    const { rows, headers, period } = useSelector(state => state.pagination)
+
+    const [views, setViews] = useState(null);
+
+    useEffect(() => {
+        if (rows.hasOwnProperty(period)) {
+
+            let views = getViewByPeriodAndPage(rows, period)
+
+            setViews(views)
+        }
+
+    }, [period, rows]);
+
     return (
         <>
-            {rows?.length && headers?.length ? (<div className="bg-white font-xs py-2 caption">
+            {Object.keys(rows)?.length && headers?.length ? (<div className="bg-white font-xs py-2 caption">
                 <div className="caption-wrapper container-fluid pr-3 bg-white">
                     <div className="row">
                         <div className="col-12 col-sm-6 view-col">
                             <div className="view-infos d-flex align-items-center text-capitalize">
                                 <div className="views">
-                                    {`view ${views?.a}-${views?.b} of ${rows?.length} rows`}
+                                    {`view ${views?.a}-${views?.b} of ${views?.len} rows`}
                                 </div>
                             </div>
                         </div>

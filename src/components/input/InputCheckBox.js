@@ -4,7 +4,7 @@ function InputCheckBox({label="",state=1}) {
     const [value, setValue] = useState(state);
     return (
         <>
-            <div className="input-group d-flex justify-content-start align-items-center">
+            <div className="input-group d-flex ig justify-content-start align-items-center">
                 <div
                     className={`input-check ${value ? "true" : "false"} d-flex align-items-center position-relative`}
                     onClick={() => setValue(value === 0 ? 1 : 0)}
