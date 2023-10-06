@@ -24,7 +24,7 @@ function Tbody() {
     return (
         <>
             {allRows?.length && headers?.length ? (<tbody className="bg-white">
-                {allRows?.map((r, i) => (<Tr key={v4()} index={i} tds={r?.row} />))}
+                {allRows?.map((r, i) => (<Tr key={v4()} index={i} checked={r?.checked} tds={r?.row} />))}
             </tbody>) : null}
         </>
     )

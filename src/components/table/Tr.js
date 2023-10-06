@@ -1,29 +1,38 @@
 import React, { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid'
-import { getRowByPeriodAndPage, setSelected } from '../../actions/paginationActions';
+import { getRowByPeriodAndPage, removeSelected, setSelected, updateRowByPeriodAndPage } from '../../actions/paginationActions';
 
-function Tr({ tds = [], index }) {
-    const [checked, setChecked] = useState(false);
+function Tr({ tds = [], index, checked: check = false }) {
+    const [checked, setChecked] = useState(check);
 
-    const { rows, period } = useSelector(state => state.pagination)
+    const { rows, period, page, selected } = useSelector(state => state.pagination)
 
     const dispatch = useDispatch()
 
     const handlerChecked = useCallback(
-        (e) => {
+        (isChecked) => {
 
-            if (e.target.checked) {
+            // add element as selected
+            console.log({ isChecked })
 
-                let row = getRowByPeriodAndPage(rows, period, index)
+            let row = getRowByPeriodAndPage(rows, period, index)
+            console.log({ row })
+            if (isChecked) {
 
-                dispatch(setSelected({ row, index }))
-                console.log(row)
-            } 
+                dispatch(setSelected({ ...row, index, page }))
 
-            console.log({ checked: e.target.checked })
+                dispatch(updateRowByPeriodAndPage(rows, period, index))
+
+            } else {
+
+                dispatch(removeSelected({ page, index, selected }))
+
+                dispatch(updateRowByPeriodAndPage(rows, period, index))
+            }
+
         },
-        [rows, period, index, dispatch],
+        [rows, period, index, dispatch, page, selected],
     )
 
     return (
@@ -31,11 +40,13 @@ function Tr({ tds = [], index }) {
             <tr>
                 <td>
                     <input
-                        value={checked}
-                        onClick={handlerChecked}
+                        checked={checked}
                         type="checkbox"
-                        className="checkbox"
-                        onChange={(e) => setChecked(!e.target.checked)}
+                        onChange={(e) => {
+                            let isChecked = e.target.checked
+                            setChecked(isChecked)
+                            handlerChecked(isChecked)
+                        }}
                     />
                 </td>
                 {tds.map((td) => (<td key={v4()}>{td}</td>))}

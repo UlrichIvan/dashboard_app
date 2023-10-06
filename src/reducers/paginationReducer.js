@@ -7,6 +7,11 @@ const initState = {
     pages: 1,
     page: 1,
     headers: [],
+    headerSelection: [{
+        period: 10,
+        page: 1,
+        checked: false
+    }]
     // views: { a: 1, b: 10, a_init: 1, index: 1 }
 }
 export const getIndexes = (len, views, page, period) => {
@@ -78,9 +83,13 @@ export const paginationReducer = (state = initState, action) => {
         case REDUX_ACTIONS.SET_SELECTED:
             let { selected } = state
             let newSelected = [...selected, action.payload]
-            console.log({ selected, newSelected })
+
             return { ...state, selected: [...newSelected] }
 
+        case REDUX_ACTIONS.SET_UPDATED_ROWS:
+            return { ...state, rows: { ...action.payload } }
+        case REDUX_ACTIONS.UPDATE_SELECTED:
+            return { ...state, selected: [...action.payload] }
         default:
             return state
     }

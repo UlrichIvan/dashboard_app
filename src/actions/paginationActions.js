@@ -41,6 +41,7 @@ export const setRows = (payload) => {
             rows[period].rowsPages.push({
                 [page]: rowsPage,
                 views: getIndexes(payload.length, DEFAULT_VIEW, page, period),
+                allSelection: false
             })
         }
 
@@ -141,6 +142,73 @@ export const setSelected = (row) => {
     }
 }
 
+
+export const setRowsSelected = (rows, period, selected) => {
+
+    let { page } = rows[period]
+
+    let { lines = {} } = getRowsByPage(rows, period)
+
+    console.log({ page, lines })
+
+    if (lines.hasOwnProperty(page)) {
+
+        console.log({ entries: lines[page] })
+
+        lines[page].forEach((row, i) => {
+            selected.push({ ...row, index: i, page })
+        });
+    }
+
+    console.log({ selected })
+
+    return {
+        type: REDUX_ACTIONS.UPDATE_SELECTED,
+        payload: selected
+    }
+}
+
+export const removeRowsSelected = (rows, period, selected) => {
+
+    let { page } = rows[period]
+
+    let { lines = {} } = getRowsByPage(rows, period)
+
+    if (lines.hasOwnProperty(page)) {
+
+        lines[page].forEach((row, i) => {
+
+            let indexed = selected.findIndex((row) => (row?.page === page && row?.index === i))
+
+            if (indexed !== -1) {
+                selected.splice(indexed, 1)
+            }
+        });
+    }
+
+    return {
+        type: REDUX_ACTIONS.UPDATE_SELECTED,
+        payload: selected
+    }
+}
+
+
+export const removeSelected = (data) => {
+
+    let { page, index, selected } = data
+
+    let indexed = selected.findIndex((row) => (row?.page === page && row?.index === index))
+
+    if (indexed !== -1) {
+        selected.splice(indexed, 1)
+    }
+    console.log({ newSelected: selected })
+    return {
+        type: REDUX_ACTIONS.UPDATE_SELECTED,
+        payload: selected
+    }
+}
+
 export const getViewByPeriodAndPage = (rows, period) => {
 
     let { rowsPages, page } = rows[period]
@@ -162,4 +230,118 @@ export const getRowByPeriodAndPage = (rows, period, index) => {
     }))
 
     return row ? row[page][index] : null
+}
+
+export const getAllSelected=(rowsPages,page)=>{
+    let index = rowsPages?.findIndex((data => {
+        return data?.hasOwnProperty(page)
+    }))
+
+    // let data=rowsPages[INDEX]
+    return index !== -1 ? {
+        index,
+        lines: rowsPages[index]
+    } : null
+}
+
+export const getRowsByPage = (rows, period) => {
+
+    let { rowsPages, page } = rows[period]
+
+    let index = rowsPages?.findIndex((data => {
+        return data?.hasOwnProperty(page)
+    }))
+
+    return index !== -1 ? {
+        index,
+        lines: rowsPages[index]
+    } : null
+}
+
+export const checkRow = (rowsPages, page, index) => {
+
+    let rowIndex = rowsPages?.findIndex((d) => {
+        return d?.hasOwnProperty(page)
+    })
+
+    if (rowIndex !== -1) {
+        let data = rowsPages[rowIndex]
+
+        data[page][index]["checked"] = !data[page][index]["checked"]
+
+        rowsPages[rowIndex] = { ...data }
+    }
+
+    return rowsPages
+}
+
+export const checkRowsByPeriodAndPages = (rows, rowsPages, page, index) => {
+
+    let rowIndex = rowsPages?.findIndex((d) => {
+        return d?.hasOwnProperty(page)
+    })
+
+    if (rowIndex !== -1) {
+        let data = rowsPages[rowIndex]
+
+        data[page][index]["checked"] = !data[page][index]["checked"]
+
+        rowsPages[rowIndex] = { ...data }
+    }
+
+    return rowsPages
+}
+
+export const updateRowByPeriodAndPage = (rows, period, index) => {
+    try {
+        let { rowsPages, page } = rows[period]
+
+        const data = checkRow(rowsPages, page, index)
+
+        console.log({ data })
+
+        rows[period].rowsPages = [...data]
+
+        return {
+            type: REDUX_ACTIONS.SET_UPDATED_ROWS,
+            payload: rows
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateRowsByPeriodAndPage = (rows, period, isChecked) => {
+    try {
+
+        let { lines = {}, index } = getRowsByPage(rows, period)
+
+        console.log({ index })
+
+        let { page, rowsPages } = rows[period]
+
+        if (lines.hasOwnProperty(page)) {
+
+            for (const row of lines[page]) {
+                row.checked = isChecked
+            }
+
+            rowsPages[index] = lines
+
+            rowsPages[index].allSelection = isChecked
+
+        }
+
+        rows[period].rowsPages = rowsPages
+
+
+        return {
+            type: REDUX_ACTIONS.SET_UPDATED_ROWS,
+            payload: rows
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
 }
