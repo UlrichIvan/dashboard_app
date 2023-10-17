@@ -1,9 +1,12 @@
+import "jspdf/dist/polyfills.es";
 import React, { useCallback } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector } from "react-redux";
 import { v4 } from "uuid";
 import { utils, writeFile } from "xlsx";
 import { FileListItems } from "../../constants";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 function DropDownExport(props) {
   const url = useSelector((state) => state.url);
@@ -19,8 +22,9 @@ function DropDownExport(props) {
       let rows = selected.map((select) => select?.row);
 
       let rowData = [headers, ...rows];
+      console.log({ rows });
 
-      if (rowData?.length) {
+      if (rows?.length) {
         const ws = utils.json_to_sheet(rowData);
 
         const wb = utils.book_new();
@@ -38,7 +42,22 @@ function DropDownExport(props) {
             bookType: FileListItems[1],
           });
         } else if (file === FileListItems[2]) {
-          //
+          const params = {
+            orientation: "portrait",
+            unit: "pt",
+            size: "A4",
+          };
+
+          let doc = new jsPDF(params);
+
+          // doc.text(filename, 40, 40);
+
+          autoTable(doc, {
+            head: [headers],
+            body: rows,
+          });
+
+          doc.save(filename);
         }
       }
     },
