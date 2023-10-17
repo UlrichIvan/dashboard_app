@@ -226,7 +226,7 @@ export const getAllSelected = (rowsPages, page) => {
 
   let row = rowsPages[index];
 
-  console.log({ allSelection: row?.allSelection, page });
+  // console.log({ allSelection: row?.allSelection, page });
 
   return row?.allSelection ? true : false;
 };

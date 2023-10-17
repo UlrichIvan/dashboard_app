@@ -10,46 +10,48 @@ export const rowsOptions = [
   { value: "20", label: "20 rows" },
   { value: "30", label: "30 rows" },
   { value: "40", label: "40 rows" },
-
 ];
 
-export const DEFAULT_PERIOD = 10
+export const DEFAULT_PERIOD = 10;
 
-export const DEFAULT_VIEW = { a: 1, b: 10, a_init: 1, index: 1 }
-
+export const DEFAULT_VIEW = { a: 1, b: 10, a_init: 1, index: 1 };
 
 export const routesTarget = [
   {
     route: "/all-charnel-interaction-summary-report",
     value: "all charnel interaction summary report",
-    show: true
+    show: true,
   },
   {
-    route: "/chat-chanel-logs", value: "chat chanel logs", show: true
+    route: "/chat-chanel-logs",
+    value: "chat chanel logs",
+    show: true,
   },
   {
-    route: "/call-chanel-logs", value: "call chanel logs", show: true
+    route: "/call-chanel-logs",
+    value: "call chanel logs",
+    show: true,
   },
   {
-    route: "/facebook-chanel-logs", value: "facebook chanel logs", show: true
+    route: "/facebook-chanel-logs",
+    value: "facebook chanel logs",
+    show: true,
   },
   {
-    route: "/instagram-chanel-logs", value: "instagram chanel logs", show: true
+    route: "/instagram-chanel-logs",
+    value: "instagram chanel logs",
+    show: true,
   },
   {
-    route: "/twitter-chanel-logs", value: "twitter chanel logs", show: true
-  }
+    route: "/twitter-chanel-logs",
+    value: "twitter chanel logs",
+    show: true,
+  },
 ];
 
-export const FileListItems = [
-  "scv",
-  "xlsx",
-  "pdf"
-];
+export const FileListItems = ["csv", "xlsx", "pdf"];
 
-
-export const HOST = "http://localhost:4000"
-
+export const HOST = "http://localhost:4000";
 
 export const REDUX_ACTIONS = {
   SET_URL: "SET_URL",
@@ -65,8 +67,8 @@ export const REDUX_ACTIONS = {
   SET_PAGE_TO_ROWS_PERIOD: "SET_PAGE_TO_ROWS_PERIOD",
   SET_SELECTED: "SET_SELECTED",
   SET_UPDATED_ROWS: "SET_UPDATED_ROWS",
-  UPDATE_SELECTED: "UPDATE_SELECTED"
-}
+  UPDATE_SELECTED: "UPDATE_SELECTED",
+};
 export const channels = [
   { enabled: 1, value: "channel" },
   { enabled: 1, value: "facebook" },
@@ -78,4 +80,4 @@ export const channels = [
   { enabled: 1, value: "chat" },
   { enabled: 1, value: "call" },
   { enabled: 1, value: "total" },
-]
+];
