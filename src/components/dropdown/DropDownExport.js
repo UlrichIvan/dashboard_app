@@ -22,7 +22,6 @@ function DropDownExport(props) {
       let rows = selected.map((select) => select?.row);
 
       let rowData = [headers, ...rows];
-      console.log({ rows });
 
       if (rows?.length) {
         const ws = utils.json_to_sheet(rowData);
@@ -49,8 +48,6 @@ function DropDownExport(props) {
           };
 
           let doc = new jsPDF(params);
-
-          // doc.text(filename, 40, 40);
 
           autoTable(doc, {
             head: [headers],
